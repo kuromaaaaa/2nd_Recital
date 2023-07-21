@@ -7,6 +7,8 @@ public class Playercontroller : MonoBehaviour
 {
     Rigidbody2D _rb;
     [SerializeField] float _moveSpeed;
+    [SerializeField] GameObject _muzzle;
+    [SerializeField] GameObject _bulletPrefub;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,10 @@ public class Playercontroller : MonoBehaviour
         {
             _rb.AddForce(Vector2.up * 10 ,ForceMode2D.Impulse);
             Debug.Log("a");
+        }
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(_bulletPrefub).transform.position = _muzzle.transform.position;
         }
     }
 }
