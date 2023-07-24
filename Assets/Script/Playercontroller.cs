@@ -31,5 +31,15 @@ public class Playercontroller : MonoBehaviour
         {
             Instantiate(_bulletPrefub).transform.position = _muzzle.transform.position;
         }
+        float Rh = Input.GetAxisRaw("RstickHori");
+        if (Rh != 0)
+        {
+            Debug.Log("H" + Rh);
+        }
+        float Rv = Input.GetAxisRaw("RstickVert");
+        if (Rv != 0) 
+        {
+            Debug.Log("V" + Rv);
+        }
     }
 }
