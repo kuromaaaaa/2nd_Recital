@@ -20,26 +20,27 @@ public class Playercontroller : MonoBehaviour
     {
         float _h = Input.GetAxisRaw("Horizontal");
         _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
-        _rb.velocity = new Vector2(_rb.velocity.x +3, _rb.velocity.y);
+        //_rb.velocity = new Vector2(_rb.velocity.x +3, _rb.velocity.y);
 
         if(Input.GetButtonDown("Jump"))
         {
             _rb.AddForce(Vector2.up * 10 ,ForceMode2D.Impulse);
             Debug.Log("a");
         }
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButton("Fire1"))
         {
-            Instantiate(_bulletPrefub).transform.position = _muzzle.transform.position;
+            FireUp();
         }
         float Rh = Input.GetAxisRaw("RstickHori");
-        if (Rh != 0)
-        {
-            Debug.Log("H" + Rh);
-        }
         float Rv = Input.GetAxisRaw("RstickVert");
-        if (Rv != 0) 
+        if (Rh != 0 || Rv != 0)
         {
-            Debug.Log("V" + Rv);
+            FireUp();
         }
+
+    }
+    private void FireUp()
+    {
+        Instantiate(_bulletPrefub).transform.position = _muzzle.transform.position;
     }
 }

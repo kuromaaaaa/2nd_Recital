@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MousePosition : MonoBehaviour
 {
+    GameObject _player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _player = GameObject.Find("ÉvÉåÉCÉÑÅ[");
     }
 
     // Update is called once per frame
@@ -22,6 +23,10 @@ public class MousePosition : MonoBehaviour
             this.transform.position = mousePosi;
         }
         else 
-        { }
+        {
+            Vector3 Rstick = new Vector3(Rh * 4 + _player.transform.position.x, Rv * -4 + _player.transform.position.y, 0);
+            this.transform.position = Rstick;
+        }
+        Debug.Log(Rh);
     }
 }
