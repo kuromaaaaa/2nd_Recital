@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Playercontroller : MonoBehaviour
@@ -8,7 +9,10 @@ public class Playercontroller : MonoBehaviour
     Rigidbody2D _rb;
     [SerializeField] float _moveSpeed;
     [SerializeField] GameObject _muzzle;
-    [SerializeField] GameObject _bulletPrefub;
+    [SerializeField] GameObject _bulletPrefubL;
+    [SerializeField] GameObject _bulletPrefubG;
+
+    [SerializeField] GunType _gunType = GunType.Laser;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,9 +42,55 @@ public class Playercontroller : MonoBehaviour
             FireUp();
         }
 
+        float wh = Input.GetAxis("Mouse ScrollWheel");
+        if(wh < 0)
+        {
+            _gunType += 1;
+        }
+        else if (wh > 0)
+        { 
+            _gunType -= 1;
+        }
+        if (_gunType == GunType.goThree)
+        {
+            _gunType = GunType.Sniper;
+        }
+        else if(_gunType == GunType.goOne)
+        {
+            _gunType = GunType.Laser;
+        }
+
     }
+
+
+
     private void FireUp()
     {
-        Instantiate(_bulletPrefub).transform.position = _muzzle.transform.position;
+        switch(_gunType)
+        {
+            case GunType.Laser:
+                {
+                    Instantiate(_bulletPrefubL).transform.position = _muzzle.transform.position;
+                    break;
+                }
+            case GunType.Gatling: 
+                {
+                    Instantiate(_bulletPrefubG).transform.position = _muzzle.transform.position;
+                    break;
+                }
+            case GunType.Sniper:
+                {
+                    break;
+                }
+        }
     }
+}
+
+enum GunType
+{
+    goThree = 0,
+    Laser = 1,
+    Gatling = 2,
+    Sniper = 3,
+    goOne = 4,
 }

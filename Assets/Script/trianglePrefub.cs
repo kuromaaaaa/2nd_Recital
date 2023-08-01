@@ -19,7 +19,7 @@ public class trianglePrefub : MonoBehaviour
         _mousePosition = GameObject.Find("MousePosition");
         _player = GameObject.Find("ÉvÉåÉCÉÑÅ[");
 
-        this.transform.up = _mousePosition.transform.position - _rotation.transform.position;
+        
         _direction = _mousePosition.transform.position - _rotation.transform.position;
 
         Destroy(this.gameObject,2f);
@@ -29,6 +29,15 @@ public class trianglePrefub : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.transform.up = _direction;
         _rb.velocity = _direction.normalized * _triangleSpeed + _player.GetComponent<Rigidbody2D>().velocity;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == ("Wall"))
+        {
+            _direction *= new Vector2(1, -1);
+        }
     }
 }

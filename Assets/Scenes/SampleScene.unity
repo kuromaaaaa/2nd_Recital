@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 999618428}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -764,7 +764,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 10
   _muzzle: {fileID: 119367253}
-  _bulletPrefub: {fileID: 1759673683944864647, guid: d801381d451c7cb4eae0afff22987b55, type: 3}
+  _bulletPrefubL: {fileID: 1759673683944864647, guid: d801381d451c7cb4eae0afff22987b55, type: 3}
+  _gunType: 1
 --- !u!1 &1224683542
 GameObject:
   m_ObjectHideFlags: 0
