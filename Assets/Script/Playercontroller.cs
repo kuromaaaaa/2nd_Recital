@@ -9,10 +9,13 @@ public class Playercontroller : MonoBehaviour
     Rigidbody2D _rb;
     [SerializeField] float _moveSpeed;
     [SerializeField] GameObject _muzzle;
+    //î≠éÀÇ≥ÇÍÇÈíe
     [SerializeField] GameObject _bulletPrefubL;
     [SerializeField] GameObject _bulletPrefubG;
-
+    [SerializeField] GameObject _bulletPrefubS;
     [SerializeField] GunType _gunType = GunType.Laser;
+    //èeÇÃÉåÅ[ÉgópÉ^ÉCÉ}Å[
+    float rateTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +32,6 @@ public class Playercontroller : MonoBehaviour
         if(Input.GetButtonDown("Jump"))
         {
             _rb.AddForce(Vector2.up * 10 ,ForceMode2D.Impulse);
-            Debug.Log("a");
         }
         if(Input.GetButton("Fire1"))
         {
@@ -42,6 +44,7 @@ public class Playercontroller : MonoBehaviour
             FireUp();
         }
 
+        //èeéùÇøë÷Ç¶
         float wh = Input.GetAxis("Mouse ScrollWheel");
         if(wh < 0)
         {
@@ -59,29 +62,36 @@ public class Playercontroller : MonoBehaviour
         {
             _gunType = GunType.Laser;
         }
-
     }
-
-
-
+    //èeÇåÇÇ¡ÇΩéûÇÃèàóù
     private void FireUp()
     {
         switch(_gunType)
         {
             case GunType.Laser:
+            {
+                rateTimer += Time.deltaTime;
+                if(rateTimer >= 0.5f)
                 {
                     Instantiate(_bulletPrefubL).transform.position = _muzzle.transform.position;
-                    break;
+                    rateTimer = 0; 
                 }
+                break;
+            }
             case GunType.Gatling: 
+            {
+                rateTimer += Time.deltaTime;
+                if (rateTimer >= 0.2f)
                 {
                     Instantiate(_bulletPrefubG).transform.position = _muzzle.transform.position;
-                    break;
+                    rateTimer = 0;
                 }
+                break;
+            }
             case GunType.Sniper:
-                {
-                    break;
-                }
+            {
+                break;
+            }
         }
     }
 }
