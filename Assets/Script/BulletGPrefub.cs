@@ -1,14 +1,14 @@
 
 using UnityEngine;
 
-public class BulletGPrefub : MonoBehaviour
+public class BulletGPrefub : BulletBase
 {
     GameObject _rotation;
     GameObject _mousePosition;
-    GameObject _player;
     Rigidbody2D _rb;
 
-    [SerializeField] float _triangleSpeed = 10;
+    [SerializeField] float _bulletSpeed = 10;
+    [SerializeField] int _bulletDamage;
     Vector2 _direction;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,6 @@ public class BulletGPrefub : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _rotation = GameObject.Find("rotation");
         _mousePosition = GameObject.Find("MousePosition");
-        _player = GameObject.Find("ÉvÉåÉCÉÑÅ[");
 
         float rx = new System.Random().Next(-10,10) * 0.1f;
         float ry = new System.Random().Next(-10,10) * 0.1f;
@@ -33,14 +32,18 @@ public class BulletGPrefub : MonoBehaviour
     void Update()
     {
         this.transform.up = _direction;
-        _rb.velocity = _direction.normalized * _triangleSpeed;
+        _rb.velocity = _direction.normalized * _bulletSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void BulletHit(Collider2D coll)
     {
-        if (collision.gameObject.tag == ("Wall"))
+        if (coll.gameObject.tag == ("Wall"))
         {
             Destroy(this.gameObject);
+        }
+        if (coll.gameObject.tag == ("Enemy"))
+        {
+            coll.GetComponent<EnemyBase>().Damage(_bulletDamage);
         }
     }
 }

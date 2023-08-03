@@ -457,9 +457,11 @@ GameObject:
   m_Component:
   - component: {fileID: 936070224}
   - component: {fileID: 936070223}
+  - component: {fileID: 936070226}
+  - component: {fileID: 936070225}
   m_Layer: 0
   m_Name: enemyLv1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,6 +533,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &936070225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936070222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25eeb734271251f4cb01ad900458a409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _life: 100
+  _deathPrefub: {fileID: 0}
+--- !u!60 &936070226
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936070222}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.5}
+    newSize: {x: 1, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.25}
+      - {x: -0.5, y: 0}
+      - {x: 0, y: -0.25}
+      - {x: 0.5, y: 0}
 --- !u!1 &999618427
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,6 +897,9 @@ MonoBehaviour:
   _bulletPrefubG: {fileID: 5200131406122731947, guid: bff117029e5572a4f8fc326a70835db1, type: 3}
   _bulletPrefubS: {fileID: 0}
   _gunType: 1
+  _rateL: 0.5
+  _rateG: 0.1
+  _rateS: 0
 --- !u!1 &1224683542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,6 +1324,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1759673683944864640, guid: d801381d451c7cb4eae0afff22987b55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759673683944864643, guid: d801381d451c7cb4eae0afff22987b55, type: 3}
+      propertyPath: _bulletDamage
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1759673683944864647, guid: d801381d451c7cb4eae0afff22987b55, type: 3}

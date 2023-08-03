@@ -15,7 +15,11 @@ public class Playercontroller : MonoBehaviour
     [SerializeField] GameObject _bulletPrefubS;
     [SerializeField] GunType _gunType = GunType.Laser;
     //銃のレート用タイマー
-    float rateTimer = 0;
+    float _rateTimer = 0;
+    [SerializeField] float _rateL;
+    [SerializeField] float _rateG;
+    [SerializeField] float _rateS;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +47,8 @@ public class Playercontroller : MonoBehaviour
         {
             FireUp();
         }
+        //銃連射用タイマー
+        _rateTimer += Time.deltaTime;
 
         //銃持ち替え
         float wh = Input.GetAxis("Mouse ScrollWheel");
@@ -70,26 +76,28 @@ public class Playercontroller : MonoBehaviour
         {
             case GunType.Laser:
             {
-                rateTimer += Time.deltaTime;
-                if(rateTimer >= 0.5f)
+                if(_rateTimer >= _rateL)
                 {
                     Instantiate(_bulletPrefubL).transform.position = _muzzle.transform.position;
-                    rateTimer = 0; 
+                    _rateTimer = 0; 
                 }
                 break;
             }
             case GunType.Gatling: 
             {
-                rateTimer += Time.deltaTime;
-                if (rateTimer >= 0.2f)
+                if (_rateTimer >= _rateG)
                 {
                     Instantiate(_bulletPrefubG).transform.position = _muzzle.transform.position;
-                    rateTimer = 0;
+                    _rateTimer = 0;
                 }
                 break;
             }
             case GunType.Sniper:
             {
+                if(_rateTimer >= _rateS)
+                    {
+                        _rateTimer = 0;
+                    }
                 break;
             }
         }
