@@ -19,6 +19,11 @@ public class Playercontroller : MonoBehaviour
     [SerializeField] float _rateL;
     [SerializeField] float _rateG;
     [SerializeField] float _rateS;
+    //コントローラーRスティックの値
+    float _rh = 0;
+    float _rv = 0;
+    public float Rh { get { return _rh; } }
+    public float Rv { get { return _rv; } }
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +46,9 @@ public class Playercontroller : MonoBehaviour
         {
             FireUp();
         }
-        float Rh = Input.GetAxisRaw("RstickHori");
-        float Rv = Input.GetAxisRaw("RstickVert");
-        if (Rh != 0 || Rv != 0)
+        _rh = Input.GetAxisRaw("RstickHori");
+        _rv = Input.GetAxisRaw("RstickVert");
+        if (_rh != 0 || _rv != 0)
         {
             FireUp();
         }

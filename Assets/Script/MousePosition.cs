@@ -5,18 +5,32 @@ using UnityEngine;
 public class MousePosition : MonoBehaviour
 {
     GameObject _player;
+    GameObject _crossSprite;
+    Playercontroller _pc;
+    bool _mouseOn;
+    public bool Mouse { get { return _mouseOn; } }
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.Find("ÉvÉåÉCÉÑÅ[");
+        _player = GameObject.Find("Player");
+        _crossSprite = transform.GetChild(0).gameObject;
+        _pc = _player.GetComponent<Playercontroller>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float Rh = Input.GetAxisRaw("RstickHori");
-        float Rv = Input.GetAxisRaw("RstickVert");
-        if (Rh == 0 && Rv == 0)
+        
+        if(Input.GetMouseButtonDown(0))
+        {
+            _mouseOn = true;
+        }
+        if(_pc.Rh != 0 || _pc.Rv != 0)
+        {
+            _mouseOn = false;
+        }
+
+        if (_mouseOn)
         {
             Vector3 mousePosi = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosi.z = 0;
@@ -24,9 +38,18 @@ public class MousePosition : MonoBehaviour
         }
         else 
         {
-            Vector3 Rstick = new Vector3(Rh * 4 + _player.transform.position.x, Rv * -4 + _player.transform.position.y, 0);
+            Vector3 Rstick = new Vector3(_pc.Rh * 4 + _player.transform.position.x, _pc.Rv * -4 + _player.transform.position.y, 0);
             this.transform.position = Rstick;
         }
-        Debug.Log(Rh);
+
+        if (!_mouseOn && _pc.Rh == 0 && _pc.Rv == 0)
+        {
+            _crossSprite.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else
+        {
+            _crossSprite.GetComponent <SpriteRenderer>().enabled = true;
+        }
+        Debug.Log(_pc.Rh + "," + _pc.Rv);
     }
 }

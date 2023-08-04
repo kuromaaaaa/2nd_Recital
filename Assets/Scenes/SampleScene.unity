@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 1159991997}
   - component: {fileID: 1159992001}
   m_Layer: 0
-  m_Name: "\u30D7\u30EC\u30A4\u30E4\u30FC"
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 1224683543}
   - component: {fileID: 1224683544}
   m_Layer: 0
-  m_Name: cross
+  m_Name: CrossSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
