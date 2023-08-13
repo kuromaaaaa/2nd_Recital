@@ -20,7 +20,6 @@ public class BulletGPrefub : BulletBase
         float rx = new System.Random().Next(-10,10) * 0.1f;
         float ry = new System.Random().Next(-10,10) * 0.1f;
         Vector3 ran = new Vector3(rx, ry,0);
-        Debug.Log(rx);
 
         _direction = _mousePosition.transform.position - _rotation.transform.position + ran;
 

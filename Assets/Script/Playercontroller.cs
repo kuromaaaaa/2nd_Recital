@@ -9,7 +9,7 @@ public class Playercontroller : MonoBehaviour
     Rigidbody2D _rb;
     [SerializeField] float _moveSpeed;
     [SerializeField] GameObject _muzzle;
-    //”­Ë‚³‚ê‚é’e
+    //”­Ë‚³‚ê‚é’e‚ÌƒvƒŒƒnƒu
     [SerializeField] GameObject _bulletPrefubL;
     [SerializeField] GameObject _bulletPrefubG;
     [SerializeField] GameObject _bulletPrefubS;
@@ -105,6 +105,13 @@ public class Playercontroller : MonoBehaviour
                     }
                 break;
             }
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == ("Enemy"))
+        {
+            Debug.Log("“G‚É“–‚½‚Á‚½‚Ìˆ—‚ğ•`‚­");
         }
     }
 }
