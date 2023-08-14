@@ -13,8 +13,9 @@ public class EnemyBase : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        //‘Ì—Í‚ª0‚ÌƒvƒŒƒnƒu‚ğ¢Š«‚µ‚Ä€‚Ê
         if(_life <= 0)
         {
             if (_deathPrefub)

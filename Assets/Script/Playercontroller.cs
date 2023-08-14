@@ -111,7 +111,14 @@ public class Playercontroller : MonoBehaviour
     {
         if(collision.gameObject.tag == ("Enemy"))
         {
-            Debug.Log("“G‚É“–‚½‚Á‚½‚Ìˆ—‚ğ•`‚­");
+            Debug.Log("“G‚É“–‚½‚Á‚½‚Ìˆ—‚ğ•`‚­(collosion)");
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == ("EnemyBullet"))
+        {
+            Debug.Log("“G‚É“–‚½‚Á‚½‚Ìˆ—‚ğ•`‚­’e");
         }
     }
 }

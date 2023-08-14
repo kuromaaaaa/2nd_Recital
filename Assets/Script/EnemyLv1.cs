@@ -16,8 +16,9 @@ public class EnemyLv1 : EnemyBase
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    new void Update()
     {
+        base.Update();
         _moveDirection = _player.transform.position - this.transform.position;
         _rb.velocity = _moveDirection.normalized * _moveSpeed;
     }
