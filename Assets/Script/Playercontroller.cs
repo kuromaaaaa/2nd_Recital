@@ -42,20 +42,16 @@ public class Playercontroller : MonoBehaviour
         {
             _rb.AddForce(Vector2.up * 10 ,ForceMode2D.Impulse);
         }
-        if(Input.GetButton("Fire1"))
+        if(Input.GetButton("Fire1") || Input.GetAxisRaw("Rtrigger") > 0 && _rh*_rv != 0)
         {
             FireUp();
         }
         _rh = Input.GetAxisRaw("RstickHori");
         _rv = Input.GetAxisRaw("RstickVert");
-        if (_rh != 0 || _rv != 0)
-        {
-            FireUp();
-        }
         //銃連射用タイマー
         _rateTimer += Time.deltaTime;
 
-        //銃持ち替え
+        //マウス銃持ち替え
         float wh = Input.GetAxis("Mouse ScrollWheel");
         if(wh < 0)
         {
@@ -73,6 +69,8 @@ public class Playercontroller : MonoBehaviour
         {
             _gunType = GunType.Laser;
         }
+        //コントローラー銃の持ち替え
+        
     }
     //銃を撃った時の処理
     private void FireUp()

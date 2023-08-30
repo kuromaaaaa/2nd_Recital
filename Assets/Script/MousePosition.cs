@@ -50,6 +50,5 @@ public class MousePosition : MonoBehaviour
         {
             _crossSprite.GetComponent <SpriteRenderer>().enabled = true;
         }
-        Debug.Log(_pc.Rh + "," + _pc.Rv);
     }
 }
