@@ -25,6 +25,7 @@ public class Playercontroller : MonoBehaviour
     public float Rh { get { return _rh; } }
     public float Rv { get { return _rv; } }
 
+    [SerializeField] GameObject _damagePrefub;
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +118,10 @@ public class Playercontroller : MonoBehaviour
         if (collision.gameObject.tag == ("EnemyBullet"))
         {
             Debug.Log("“G‚É“–‚½‚Á‚½‚Ìˆ—‚ğ•`‚­’e");
+            if(_damagePrefub)
+            {
+                Instantiate(_damagePrefub).transform.position = this.transform.position;
+            }
         }
     }
 }
