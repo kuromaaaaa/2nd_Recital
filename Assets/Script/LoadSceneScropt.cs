@@ -19,6 +19,13 @@ public class LoadSceneScropt : MonoBehaviour
 
     public void LoadScene(string name)
     {
-        SceneManager.LoadScene(name);
+
+        StartCoroutine(nextScene(name));
+
+    }
+    IEnumerator nextScene(string N)
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(N);
     }
 }
