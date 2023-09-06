@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
-public class StartLoadScene : MonoBehaviour
+public class LoadSceneScropt : MonoBehaviour
 {
     GameObject _runner;
     Tweener _run;
@@ -17,7 +17,7 @@ public class StartLoadScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void LoadScene(string name)

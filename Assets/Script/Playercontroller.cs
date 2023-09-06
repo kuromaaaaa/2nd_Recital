@@ -43,7 +43,7 @@ public class Playercontroller : MonoBehaviour
         {
             _rb.AddForce(Vector2.up * 10 ,ForceMode2D.Impulse);
         }
-        if(Input.GetButton("Fire1") || Input.GetAxisRaw("Rtrigger") > 0 && _rh*_rv != 0)
+        if(Input.GetButton("Fire1") || Input.GetAxisRaw("Rtrigger") > 0 && _rh+_rv != 0)
         {
             FireUp();
         }
