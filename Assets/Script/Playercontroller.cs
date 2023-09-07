@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Playercontroller : MonoBehaviour
 {
     Rigidbody2D _rb;
+    Animator _anim;
     [SerializeField] float _moveSpeed;
     [SerializeField] GameObject _muzzle;
+    [SerializeField] int _playerLife = 3;
     //発射される弾のプレハブ
     [SerializeField] GameObject _bulletPrefubL;
     [SerializeField] GameObject _bulletPrefubG;
@@ -30,6 +34,8 @@ public class Playercontroller : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -71,7 +77,14 @@ public class Playercontroller : MonoBehaviour
             _gunType = GunType.Laser;
         }
         //コントローラー銃の持ち替え
-        
+
+        _anim.SetFloat("SpeedY", _rb.velocity.y);
+
+        //プレイヤーの体力が０の時
+        if(_playerLife == 0)
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
     //銃を撃った時の処理
     private void FireUp()
@@ -111,6 +124,7 @@ public class Playercontroller : MonoBehaviour
         if(collision.gameObject.tag == ("Enemy"))
         {
             Debug.Log("敵に当たった時の処理を描く(collosion)");
+            _playerLife -= 1;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
