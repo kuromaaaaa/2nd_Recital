@@ -22,4 +22,12 @@ public class EnemyLv1 : EnemyBase
         _moveDirection = _player.transform.position - this.transform.position;
         _rb.velocity = _moveDirection.normalized * _moveSpeed;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == ("Player"))
+        {
+            this.GetComponent<EnemyBase>().Damage(1);
+        }
+    }
 }

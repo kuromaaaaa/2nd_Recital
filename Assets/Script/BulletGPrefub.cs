@@ -9,6 +9,7 @@ public class BulletGPrefub : BulletBase
 
     [SerializeField] float _bulletSpeed = 10;
     [SerializeField] int _bulletDamage;
+    [SerializeField] float _bulletLife = 3f;
     Vector2 _direction;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class BulletGPrefub : BulletBase
             _direction = _mousePosition.transform.position - _rotation.transform.position + ran;
         }
 
-        Destroy(this.gameObject, 2f);
+        Destroy(this.gameObject, _bulletLife);
 
     }
 
