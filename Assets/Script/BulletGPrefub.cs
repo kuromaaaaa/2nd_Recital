@@ -20,8 +20,14 @@ public class BulletGPrefub : BulletBase
         float rx = new System.Random().Next(-10,10) * 0.1f;
         float ry = new System.Random().Next(-10,10) * 0.1f;
         Vector3 ran = new Vector3(rx, ry,0);
-
-        _direction = _mousePosition.transform.position - _rotation.transform.position + ran;
+        if (_rotation == null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _direction = _mousePosition.transform.position - _rotation.transform.position + ran;
+        }
 
         Destroy(this.gameObject, 2f);
 
@@ -32,6 +38,7 @@ public class BulletGPrefub : BulletBase
     {
         this.transform.up = _direction;
         _rb.velocity = _direction.normalized * _bulletSpeed;
+        
     }
 
     public override void BulletHit(Collider2D coll)

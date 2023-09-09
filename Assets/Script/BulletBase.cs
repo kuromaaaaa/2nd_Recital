@@ -8,9 +8,6 @@ public abstract class BulletBase : MonoBehaviour
       
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == ("Enemy"))
-        {
-            BulletHit(collision);
-        }
+         BulletHit(collision);
     }
 }

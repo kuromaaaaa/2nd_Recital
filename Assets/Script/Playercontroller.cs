@@ -34,8 +34,10 @@ public class Playercontroller : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _anim = GetComponent<Animator>();
-        
+        if (GetComponent<Animator>())
+        {
+            _anim = GetComponent<Animator>();
+        }
     }
 
     // Update is called once per frame
@@ -77,7 +79,8 @@ public class Playercontroller : MonoBehaviour
             _gunType = GunType.Laser;
         }
         //コントローラー銃の持ち替え
-
+        
+        if(GetComponent<Animator>())
         _anim.SetFloat("SpeedY", _rb.velocity.y);
 
         //プレイヤーの体力が０の時

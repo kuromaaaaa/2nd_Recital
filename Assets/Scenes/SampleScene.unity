@@ -916,7 +916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &944692936
 Transform:
   m_ObjectHideFlags: 0
@@ -1347,6 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 10
   _muzzle: {fileID: 119367253}
+  _playerLife: 3
   _bulletPrefubL: {fileID: 1759673683944864647, guid: d801381d451c7cb4eae0afff22987b55, type: 3}
   _bulletPrefubG: {fileID: 5200131406122731947, guid: bff117029e5572a4f8fc326a70835db1, type: 3}
   _bulletPrefubS: {fileID: 0}
