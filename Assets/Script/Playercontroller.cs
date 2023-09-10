@@ -13,6 +13,7 @@ public class Playercontroller : MonoBehaviour
     [SerializeField] float _moveSpeed;
     [SerializeField] GameObject _muzzle;
     [SerializeField] int _playerLife = 3;
+    public int PlayerLife { get { return _playerLife; } }
     //”­ŽË‚³‚ê‚é’e‚ÌƒvƒŒƒnƒu
     [SerializeField] GameObject _bulletPrefubL;
     [SerializeField] GameObject _bulletPrefubG;
