@@ -11,8 +11,10 @@ public class Playercontroller : MonoBehaviour
     Rigidbody2D _rb;
     Animator _anim;
     [SerializeField] float _moveSpeed;
-    [SerializeField] GameObject _muzzle;
+    [SerializeField] float _jumpPower = 10;
     [SerializeField] int _playerLife = 3;
+    bool _jumpReady = true;
+    [SerializeField] GameObject _muzzle;
     public int PlayerLife { get { return _playerLife; } }
     //”­Ë‚³‚ê‚é’e‚ÌƒvƒŒƒnƒu
     [SerializeField] GameObject _bulletPrefubL;
@@ -48,9 +50,10 @@ public class Playercontroller : MonoBehaviour
         _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
         //_rb.velocity = new Vector2(_rb.velocity.x +3, _rb.velocity.y);
 
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && _jumpReady == true)
         {
-            _rb.AddForce(Vector2.up * 10 ,ForceMode2D.Impulse);
+            _rb.AddForce(Vector2.up * _jumpPower ,ForceMode2D.Impulse);
+            _jumpReady = false;
         }
         if(Input.GetButton("Fire1") || Input.GetAxisRaw("Rtrigger") > 0 && _rh+_rv != 0)
         {
@@ -129,6 +132,10 @@ public class Playercontroller : MonoBehaviour
         {
             Debug.Log("“G‚É“–‚½‚Á‚½‚Ìˆ—‚ğ•`‚­(collosion)");
             _playerLife -= 1;
+        }
+        if(collision.gameObject.tag == ("Wall"))
+        {
+            _jumpReady = true;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

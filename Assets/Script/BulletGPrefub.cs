@@ -51,6 +51,7 @@ public class BulletGPrefub : BulletBase
         if (coll.gameObject.tag == ("Enemy"))
         {
             coll.GetComponent<EnemyBase>().Damage(_bulletDamage);
+            Destroy(this.gameObject);
         }
     }
 }
