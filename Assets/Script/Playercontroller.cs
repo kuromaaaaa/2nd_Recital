@@ -20,7 +20,9 @@ public class Playercontroller : MonoBehaviour
     [SerializeField] GameObject _bulletPrefubL;
     [SerializeField] GameObject _bulletPrefubG;
     [SerializeField] GameObject _bulletPrefubS;
-    [SerializeField] GunType _gunType = GunType.Laser;
+    [SerializeField] int _gunType = 1;
+    public int GunType { get { return _gunType; } }
+
     //銃のレート用タイマー
     float _rateTimer = 0;
     [SerializeField] float _rateL;
@@ -74,31 +76,26 @@ public class Playercontroller : MonoBehaviour
         { 
             _gunType -= 1;
         }
-        if (_gunType == GunType.goThree)
+        if (_gunType == 0)
         {
-            _gunType = GunType.Sniper;
+            _gunType = 3;
         }
-        else if(_gunType == GunType.goOne)
+        else if(_gunType == 4)
         {
-            _gunType = GunType.Laser;
+            _gunType = 0;
         }
         //コントローラー銃の持ち替え
         
         if(GetComponent<Animator>())
         _anim.SetFloat("SpeedY", _rb.velocity.y);
 
-        //プレイヤーの体力が０の時
-        if(_playerLife == 0)
-        {
-            SceneManager.LoadScene("GameOverScene");
-        }
     }
     //銃を撃った時の処理
     private void FireUp()
     {
         switch(_gunType)
         {
-            case GunType.Laser:
+            case 1:
             {
                 if(_rateTimer >= _rateL)
                 {
@@ -107,7 +104,7 @@ public class Playercontroller : MonoBehaviour
                 }
                 break;
             }
-            case GunType.Gatling: 
+            case 2: 
             {
                 if (_rateTimer >= _rateG)
                 {
@@ -116,7 +113,7 @@ public class Playercontroller : MonoBehaviour
                 }
                 break;
             }
-            case GunType.Sniper:
+            case 3:
             {
                 if(_rateTimer >= _rateS)
                     {
@@ -143,6 +140,7 @@ public class Playercontroller : MonoBehaviour
         if (collision.gameObject.tag == ("EnemyBullet"))
         {
             Debug.Log("敵に当たった時の処理を描く弾");
+            _playerLife -= 1;
             if(_damagePrefub)
             {
                 Instantiate(_damagePrefub).transform.position = this.transform.position;
@@ -151,11 +149,3 @@ public class Playercontroller : MonoBehaviour
     }
 }
 
-enum GunType
-{
-    goThree = 0,
-    Laser = 1,
-    Gatling = 2,
-    Sniper = 3,
-    goOne = 4,
-}
