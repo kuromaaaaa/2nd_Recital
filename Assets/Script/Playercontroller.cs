@@ -52,7 +52,7 @@ public class Playercontroller : MonoBehaviour
         _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
         //_rb.velocity = new Vector2(_rb.velocity.x +3, _rb.velocity.y);
 
-        if(Input.GetButtonDown("Jump") && _jumpReady == true)
+        if((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Ltrigger") > 0) && _jumpReady == true )
         {
             _rb.AddForce(Vector2.up * _jumpPower ,ForceMode2D.Impulse);
             _jumpReady = false;
@@ -82,10 +82,23 @@ public class Playercontroller : MonoBehaviour
         }
         else if(_gunType == 4)
         {
-            _gunType = 0;
+            _gunType = 1;
         }
         //コントローラー銃の持ち替え
-        
+        if (0 < Input.GetAxisRaw("crossX"))
+        {
+            _gunType = 3;
+        }
+        else if(Input.GetAxisRaw("crossX") < 0)
+        {
+            _gunType = 1;
+        }
+        if(0 < Input.GetAxisRaw("crossY"))
+        {
+            _gunType = 2;
+        }
+
+        //ジャンプアニメーション用変数
         if(GetComponent<Animator>())
         _anim.SetFloat("SpeedY", _rb.velocity.y);
 
