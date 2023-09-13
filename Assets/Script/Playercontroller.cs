@@ -20,7 +20,10 @@ public class Playercontroller : MonoBehaviour
     //発射される弾のプレハブ
     [SerializeField] GameObject _bulletPrefubL;
     [SerializeField] GameObject _bulletPrefubG;
-    [SerializeField] GameObject _bulletPrefubS;
+    [SerializeField] GameObject _bulletPrefubS1;
+    [SerializeField] GameObject _bulletPrefubS2;
+    [SerializeField] GameObject _bulletPrefubS3;
+    float _BSPower;
     [SerializeField] int _gunType = 1;
     public int GunType { get { return _gunType; } }
 
@@ -50,8 +53,8 @@ public class Playercontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float _h = Input.GetAxisRaw("Horizontal");
-        _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
+        float h = Input.GetAxisRaw("Horizontal");
+        _rb.velocity = new Vector2(h * _moveSpeed, _rb.velocity.y);
         //_rb.velocity = new Vector2(_rb.velocity.x +3, _rb.velocity.y);
 
         if((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Ltrigger") > 0) && _jumpReady == true )
@@ -64,11 +67,39 @@ public class Playercontroller : MonoBehaviour
             if(_sls.GameClear ==false)
             FireUp();
         }
+        if(_gunType == 3 && Input.GetButtonUp("Fire1"))
+        {
+            if (_BSPower < 10)
+            {
+                GameObject shot = Instantiate(_bulletPrefubS1) as GameObject;
+                shot.transform.position = _muzzle.transform.position;
+                shot.GetComponent<BulletSPrefub>().BulletDamage((int)_BSPower);
+
+            }
+            else if (_BSPower < 20)
+            {
+                GameObject shot = Instantiate(_bulletPrefubS2) as GameObject;
+                shot.transform.position = _muzzle.transform.position;
+                shot.GetComponent<BulletSPrefub>().BulletDamage((int)_BSPower);
+            }
+            else
+            {
+                if(_BSPower >100)
+                {
+                    _BSPower = 100;
+                }
+                GameObject shot = Instantiate(_bulletPrefubS3) as GameObject;
+                shot.transform.position = _muzzle.transform.position;
+                shot.GetComponent<BulletSPrefub>().BulletDamage((int)_BSPower);
+            }
+            _BSPower = 0;
+        }
+        //Rスティックの入力
         _rh = Input.GetAxisRaw("RstickHori");
         _rv = Input.GetAxisRaw("RstickVert");
         //銃連射用タイマー
         _rateTimer += Time.deltaTime;
-
+        
         //マウス銃持ち替え
         float wh = Input.GetAxis("Mouse ScrollWheel");
         if(wh < 0)
@@ -133,7 +164,7 @@ public class Playercontroller : MonoBehaviour
             {
                 if(_rateTimer >= _rateS)
                     {
-                        _rateTimer = 0;
+                        _BSPower += Time.deltaTime*20;
                     }
                 break;
             }

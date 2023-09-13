@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class healthCount : MonoBehaviour
 {
     Playercontroller _pc;
-    [SerializeField] GameObject _parent;
     // Start is called before the first frame update
     void Start()
     {

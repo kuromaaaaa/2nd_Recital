@@ -461,7 +461,9 @@ MonoBehaviour:
   _muzzle: {fileID: 885513532}
   _bulletPrefubL: {fileID: 4371297849166061177, guid: 1463f3385058d3145a45e9245d89135c, type: 3}
   _bulletPrefubG: {fileID: 2596542138769671106, guid: 23e127af051651b4b9b8ea541137630e, type: 3}
-  _bulletPrefubS: {fileID: 0}
+  _bulletPrefubS1: {fileID: 911235203654750980, guid: 9b87a539a15563a47b8af512f76c0049, type: 3}
+  _bulletPrefubS2: {fileID: 7897511680691413855, guid: 7e799790ffd87bc41811bc91f88600ba, type: 3}
+  _bulletPrefubS3: {fileID: 3732727405080372943, guid: b7ee969043bcf964bbdd4b70c0fabfc8, type: 3}
   _gunType: 1
   _rateL: 0.2
   _rateG: 0.1
@@ -1870,6 +1872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 885513533}
   - component: {fileID: 885513534}
+  - component: {fileID: 885513535}
   m_Layer: 3
   m_Name: muzzle
   m_TagString: Untagged
@@ -1944,6 +1947,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &885513535
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885513532}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000019073486, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5000001
 --- !u!1 &947877138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,7 +3300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9e10305d438e54892f448cd0612f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parent: {fileID: 0}
 --- !u!1 &1728251884
 GameObject:
   m_ObjectHideFlags: 0
