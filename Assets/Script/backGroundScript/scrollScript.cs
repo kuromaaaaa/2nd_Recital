@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scrollScropt : MonoBehaviour
+public class scrollScript : MonoBehaviour
 {
     [SerializeField] float _scaleX;
     [SerializeField] float _goScaleX;
@@ -21,7 +21,7 @@ public class scrollScropt : MonoBehaviour
             this.transform.position = new Vector3(_goScaleX,this.transform.position.y);
         }
     }
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         this.transform.position = new Vector3(this.transform.position.x - _scrollSpeed/50,this.transform.position.y);
     }

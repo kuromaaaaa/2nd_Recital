@@ -10,6 +10,7 @@ public class Playercontroller : MonoBehaviour
 {
     Rigidbody2D _rb;
     Animator _anim;
+    systemLoadScene _sls;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpPower = 10;
     [SerializeField] int _playerLife = 3;
@@ -39,6 +40,7 @@ public class Playercontroller : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _sls = GameObject.Find("--system--").GetComponent<systemLoadScene>();
         if (GetComponent<Animator>())
         {
             _anim = GetComponent<Animator>();
@@ -59,6 +61,7 @@ public class Playercontroller : MonoBehaviour
         }
         if(Input.GetButton("Fire1") || Input.GetAxisRaw("Rtrigger") > 0 && _rh+_rv != 0)
         {
+            if(_sls.GameClear ==false)
             FireUp();
         }
         _rh = Input.GetAxisRaw("RstickHori");
