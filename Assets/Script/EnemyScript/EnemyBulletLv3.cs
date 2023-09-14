@@ -13,7 +13,6 @@ public class EnemyBulletLv3 : MonoBehaviour
     {
         _parent = transform.parent.gameObject;
         _direction = this.gameObject.transform.position - _parent.transform.position;
-        this.transform.up = _direction;
     }
 
     // Update is called once per frame

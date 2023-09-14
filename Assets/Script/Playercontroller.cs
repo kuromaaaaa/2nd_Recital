@@ -67,6 +67,7 @@ public class Playercontroller : MonoBehaviour
             if(_sls.GameClear ==false)
             FireUp();
         }
+        //チャージショット発射
         if(_gunType == 3 && Input.GetButtonUp("Fire1"))
         {
             if (_BSPower < 10)
@@ -164,6 +165,7 @@ public class Playercontroller : MonoBehaviour
             {
                 if(_rateTimer >= _rateS)
                     {
+                        //チャージショット溜め
                         _BSPower += Time.deltaTime*20;
                     }
                 break;

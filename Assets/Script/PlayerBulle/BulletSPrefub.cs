@@ -53,7 +53,7 @@ public class BulletSPrefub : BulletBase
             coll.GetComponent<EnemyBase>().Damage(_bulletDamage);
             Destroy(this.gameObject);
         }
-        if(coll.gameObject.tag == ("EnemyBullet"))
+        if(coll.gameObject.tag == ("EnemyBullet") && _bulletDamage > 10)
         {
             Destroy(coll.gameObject);
         }
