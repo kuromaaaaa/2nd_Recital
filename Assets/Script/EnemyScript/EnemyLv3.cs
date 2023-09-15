@@ -13,7 +13,7 @@ public class EnemyLv3 : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
-        _anim = GetComponent<Animator>();
+        _anim = this.transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame

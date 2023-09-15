@@ -9,12 +9,20 @@ public class EnemyBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     public void Update()
     {
+        if(GameObject.Find("Player").transform.position.x > this.gameObject.transform.position.x)
+        {
+            this.gameObject.transform.localScale = new Vector2(-1,1);
+        }
+        else
+        {
+            this.gameObject.transform.localScale = new Vector2(1, 1);
+        }
         //‘Ì—Í‚ª0‚ÌƒvƒŒƒnƒu‚ğ¢Š«‚µ‚Ä€‚Ê
         if(_life <= 0)
         {

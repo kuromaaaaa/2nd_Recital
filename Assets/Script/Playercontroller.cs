@@ -37,8 +37,11 @@ public class Playercontroller : MonoBehaviour
     float _rv = 0;
     public float Rh { get { return _rh; } }
     public float Rv { get { return _rv; } }
-
+    //ƒ_ƒ[ƒW‚Æ–³“GŠÔ
     [SerializeField] GameObject _damagePrefub;
+    [SerializeField] float _mutekiTime = 2;
+    float _mutekiCount;
+    bool _muteki = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +56,10 @@ public class Playercontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_muteki)
+        {
+            Muteki();//–³“GŠÔ
+        }
         float h = Input.GetAxisRaw("Horizontal");
         _rb.velocity = new Vector2(h * _moveSpeed, _rb.velocity.y);
         //_rb.velocity = new Vector2(_rb.velocity.x +3, _rb.velocity.y);
@@ -174,10 +181,11 @@ public class Playercontroller : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == ("Enemy"))
+        if(collision.gameObject.tag == ("Enemy") && !_muteki)
         {
             Debug.Log("“G‚É“–‚½‚Á‚½‚Ìˆ—‚ğ•`‚­(collosion)");
             _playerLife -= 1;
+            _muteki = true;
         }
         if(collision.gameObject.tag == ("Wall"))
         {
@@ -186,14 +194,29 @@ public class Playercontroller : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == ("EnemyBullet"))
+        if (collision.gameObject.tag == ("EnemyBullet") && !_muteki)
         {
             Debug.Log("“G‚É“–‚½‚Á‚½‚Ìˆ—‚ğ•`‚­’e");
             _playerLife -= 1;
+            _muteki = true;
             if(_damagePrefub)
             {
                 Instantiate(_damagePrefub).transform.position = this.transform.position;
             }
+        }
+    }
+    void Muteki()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
+        this.gameObject.transform.GetChild(0).transform.GetChild(0).
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
+        //–³“GŠÔ
+        _mutekiCount += Time.deltaTime;
+        if(_mutekiCount > _mutekiTime)
+        {
+            _muteki = false;
+            _mutekiCount = 0;
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
     }
 }
