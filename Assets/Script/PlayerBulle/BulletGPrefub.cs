@@ -10,6 +10,7 @@ public class BulletGPrefub : BulletBase
     [SerializeField] float _bulletSpeed = 10;
     [SerializeField] int _bulletDamage;
     [SerializeField] float _bulletLife = 3f;
+    [SerializeField] GameObject _hitEffect;
     Vector2 _direction;
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class BulletGPrefub : BulletBase
         if (coll.gameObject.tag == ("Enemy"))
         {
             coll.GetComponent<EnemyBase>().Damage(_bulletDamage);
+            Instantiate(_hitEffect).gameObject.transform.position = this.transform.GetChild(0).transform.position;
             Destroy(this.gameObject);
         }
     }

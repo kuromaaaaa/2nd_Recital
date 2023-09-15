@@ -17,6 +17,8 @@ public class systemLoadScene : MonoBehaviour
     public bool GameClear { get { return _gameClear; } }
     Tweener _run;
     GameObject _player;
+
+    float _controlTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class systemLoadScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //一定時間操作が行われない場合タイトルに戻る
+        notcontrol();
         if(_pc.PlayerLife ==0)
         {
             SceneManager.LoadScene("GameOverScene");
@@ -47,4 +51,21 @@ public class systemLoadScene : MonoBehaviour
         SceneManager.LoadScene("gameClearScene");
     }
 
+    void notcontrol()
+    {
+        if(!Input.anyKey && !Input.GetButtonDown("Jump") && Input.GetAxisRaw("Horizontal") == 0
+            )
+        {//操作が何も行われていないとき
+            _controlTimer += Time.deltaTime;
+        }
+        else
+        {
+            _controlTimer = 0;
+        }
+        if(_controlTimer > 60)
+        {
+            Debug.Log("ロード");
+            SceneManager.LoadScene("TitleScene");
+        }
+    }
 }

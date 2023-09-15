@@ -4,9 +4,9 @@ public class BulletLPrefub: BulletBase
 {
     GameObject _rotation;
     GameObject _mousePosition;
-    SpriteRenderer _child;
     Rigidbody2D _rb;
 
+    [SerializeField] GameObject _hitEffect;
     [SerializeField] float _bulletSpeed = 10;
     [SerializeField] int _bulletDamage;
     [SerializeField] float _bulletLife = 3f;
@@ -28,8 +28,7 @@ public class BulletLPrefub: BulletBase
         }
 
         Destroy(this.gameObject,_bulletLife);
-        _child = transform.Find("player-shoot1").gameObject.GetComponent<SpriteRenderer>();
-        _child.enabled = false;
+        this.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -37,7 +36,7 @@ public class BulletLPrefub: BulletBase
     {
         this.transform.up = _direction;
         _rb.velocity = _direction.normalized * _bulletSpeed;
-        _child.enabled=true;
+        this.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
     }
 
 
@@ -51,6 +50,7 @@ public class BulletLPrefub: BulletBase
         if (coll.gameObject.tag == ("Enemy"))
         {
             coll.GetComponent<EnemyBase>().Damage(_bulletDamage);
+            Instantiate(_hitEffect).gameObject.transform.position = this.transform.GetChild(0).transform.position;
             Destroy(this.gameObject);
         }
     }

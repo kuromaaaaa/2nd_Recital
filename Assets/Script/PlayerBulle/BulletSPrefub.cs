@@ -10,6 +10,7 @@ public class BulletSPrefub : BulletBase
     GameObject _rotation;
     GameObject _mousePosition;
     [SerializeField] float _bulletSpeed;
+    [SerializeField] GameObject _hitEffect;
     Vector2 _direction;
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,8 @@ public class BulletSPrefub : BulletBase
         {
             _direction = _mousePosition.transform.position - _rotation.transform.position;
         }
-        this.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        Destroy(this.gameObject, 3f);
+        this.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -33,7 +35,7 @@ public class BulletSPrefub : BulletBase
     {
         this.transform.up = _direction;
         _rb.velocity = _direction.normalized * _bulletSpeed;
-        this.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+        this.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public void BulletDamage(int n)
@@ -51,6 +53,7 @@ public class BulletSPrefub : BulletBase
         if (coll.gameObject.tag == ("Enemy"))
         {
             coll.GetComponent<EnemyBase>().Damage(_bulletDamage);
+            Instantiate(_hitEffect).gameObject.transform.position = this.transform.GetChild(0).transform.position;
             Destroy(this.gameObject);
         }
         if(coll.gameObject.tag == ("EnemyBullet") && _bulletDamage > 10)

@@ -23,6 +23,6 @@ public class scrollScript : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        this.transform.position = new Vector3(this.transform.position.x - _scrollSpeed/50,this.transform.position.y);
+        this.transform.position = new Vector3(this.transform.position.x - _scrollSpeed/50,this.transform.position.y,this.transform.position.z);
     }
 }

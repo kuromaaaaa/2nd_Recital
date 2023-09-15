@@ -11,6 +11,7 @@ public class Playercontroller : MonoBehaviour
     Rigidbody2D _rb;
     Animator _anim;
     systemLoadScene _sls;
+    ParticleSystem _ps;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpPower = 10;
     [SerializeField] int _playerLife = 3;
@@ -47,6 +48,8 @@ public class Playercontroller : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _sls = GameObject.Find("--system--").GetComponent<systemLoadScene>();
+        _ps = GetComponent<ParticleSystem>();
+        _ps.Stop();
         if (GetComponent<Animator>())
         {
             _anim = GetComponent<Animator>();
@@ -100,6 +103,7 @@ public class Playercontroller : MonoBehaviour
                 shot.transform.position = _muzzle.transform.position;
                 shot.GetComponent<BulletSPrefub>().BulletDamage((int)_BSPower);
             }
+            _ps.Stop();
             _BSPower = 0;
         }
         //Rスティックの入力
@@ -141,8 +145,11 @@ public class Playercontroller : MonoBehaviour
         }
 
         //ジャンプアニメーション用変数
-        if(GetComponent<Animator>())
-        _anim.SetFloat("SpeedY", _rb.velocity.y);
+        if (GetComponent<Animator>())
+        {
+            _anim.SetFloat("SpeedY", _rb.velocity.y);
+            _anim.SetBool("IsGround", _jumpReady);
+        }
 
     }
     //銃を撃った時の処理
@@ -170,6 +177,10 @@ public class Playercontroller : MonoBehaviour
             }
             case 3:
             {
+                if(_BSPower == 0)
+                    {
+                        _ps.Play();
+                    }
                 if(_rateTimer >= _rateS)
                     {
                         //チャージショット溜め
@@ -207,9 +218,9 @@ public class Playercontroller : MonoBehaviour
     }
     void Muteki()
     {
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.6f);
         this.gameObject.transform.GetChild(0).transform.GetChild(0).
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.6f);
         //無敵時間
         _mutekiCount += Time.deltaTime;
         if(_mutekiCount > _mutekiTime)
