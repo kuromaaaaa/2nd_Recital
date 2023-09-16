@@ -6894,7 +6894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3f25e126b3d654fab1aaae59f4c1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goalTimer: 1000000
+  _goalTimer: 10
 --- !u!114 &1118725071
 MonoBehaviour:
   m_ObjectHideFlags: 0

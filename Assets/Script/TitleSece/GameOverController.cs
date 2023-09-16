@@ -7,6 +7,7 @@ public class GameOverController : MonoBehaviour
 {
     bool _first = true;
     RectTransform _rt;
+    float _controlTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class GameOverController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        notcontrol();
         if ((Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("crossX") > 0) && _first == true)
         {
             _first = false;
@@ -39,6 +41,23 @@ public class GameOverController : MonoBehaviour
         }
         if (_first == false && Input.GetButtonDown("Submit"))
         {
+            SceneManager.LoadScene("TitleScene");
+        }
+    }
+    void notcontrol()
+    {
+        if (!Input.anyKey && !Input.GetButtonDown("Jump") && Input.GetAxisRaw("Horizontal") == 0
+            && Input.GetAxisRaw("Ltrigger") == 0 && Input.GetAxisRaw("Rtrigger") == 0)
+        {//‘€ì‚ª‰½‚às‚í‚ê‚Ä‚¢‚È‚¢‚Æ‚«
+            _controlTimer += Time.deltaTime;
+        }
+        else
+        {
+            _controlTimer = 0;
+        }
+        if (_controlTimer > 60)
+        {
+            Debug.Log("ƒ[ƒh");
             SceneManager.LoadScene("TitleScene");
         }
     }
