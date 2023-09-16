@@ -147,7 +147,6 @@ public class Playercontroller : MonoBehaviour
         //ジャンプアニメーション用変数
         if (GetComponent<Animator>())
         {
-            _anim.SetFloat("SpeedY", _rb.velocity.y);
             _anim.SetBool("IsGround", _jumpReady);
         }
 

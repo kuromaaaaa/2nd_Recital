@@ -8,6 +8,7 @@ public class LoadSceneScropt : MonoBehaviour
 {
     GameObject _runner;
     Tweener _run;
+    [SerializeField] string _LoadSceneString;
     // Start is called before the first frame update
     void Start()
     {

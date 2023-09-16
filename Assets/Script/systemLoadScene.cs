@@ -54,7 +54,7 @@ public class systemLoadScene : MonoBehaviour
     void notcontrol()
     {
         if(!Input.anyKey && !Input.GetButtonDown("Jump") && Input.GetAxisRaw("Horizontal") == 0
-            )
+            && Input.GetAxisRaw("Ltrigger") == 0 && Input.GetAxisRaw("Rtrigger") == 0)
         {//‘€ì‚ª‰½‚às‚í‚ê‚Ä‚¢‚È‚¢‚Æ‚«
             _controlTimer += Time.deltaTime;
         }
