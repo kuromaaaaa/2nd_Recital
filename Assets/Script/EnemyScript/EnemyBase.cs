@@ -32,7 +32,6 @@ public class EnemyBase : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
-        Debug.Log(_life);
     }
 
     public void Damage(int n)
