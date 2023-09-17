@@ -68,7 +68,6 @@ public class Playercontroller : MonoBehaviour
         }
         float h = Input.GetAxisRaw("Horizontal");
         _rb.velocity = new Vector2(h * _moveSpeed, _rb.velocity.y);
-        //_rb.velocity = new Vector2(_rb.velocity.x +3, _rb.velocity.y);
 
         if((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Ltrigger") > 0) && _jumpReady == true )
         {
@@ -78,7 +77,7 @@ public class Playercontroller : MonoBehaviour
 
             _jumpReady = false;
         }
-        if((Input.GetButtonUp("Jump") && Input.GetAxisRaw("Ltrigger") == 0) || _jumpTimer > 0.3 || _jumpReady == true)
+        if((!Input.GetButton("Jump") && Input.GetAxis("Ltrigger") == 0) || _jumpTimer > 0.3 || _jumpReady == true)
         {
             _rb.gravityScale = _groundGravity;
             _jumpTimer = 0;
@@ -88,6 +87,7 @@ public class Playercontroller : MonoBehaviour
             _jumpTimer += Time.deltaTime;
         }
 
+        //’e”­ŽË
         if(Input.GetButton("Fire1") || Input.GetAxisRaw("Rtrigger") > 0 && _rh+_rv != 0)
         {
             if(_sls.GameClear ==false)
