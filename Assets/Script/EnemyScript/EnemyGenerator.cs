@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    [SerializeField] List<Generator> _enemyArray = new List<Generator>();
+    [SerializeField] List<Generator> _enemyList = new List<Generator>();
     float _nowTimer;
     // Start is called before the first frame update
     void Start()
@@ -18,12 +18,12 @@ public class EnemyGenerator : MonoBehaviour
     void Update()
     {
         _nowTimer += Time.deltaTime;
-        for(int i = 0; i < _enemyArray.Count ; i++)
+        for(int i = 0; i < _enemyList.Count ; i++)
         {
-            if (_enemyArray[i].Timer < _nowTimer)
+            if (_enemyList[i].Timer < _nowTimer)
             {
-                Instantiate(_enemyArray[i].Enemy).transform.position = _enemyArray[i].Seisei;
-                _enemyArray.RemoveAt(i);
+                Instantiate(_enemyList[i].Enemy).transform.position = _enemyList[i].Seisei;
+                _enemyList.RemoveAt(i);
             }
         }
     }

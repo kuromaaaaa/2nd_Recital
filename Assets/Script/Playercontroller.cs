@@ -14,8 +14,10 @@ public class Playercontroller : MonoBehaviour
     ParticleSystem _ps;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpPower = 10;
-    [SerializeField] int _playerLife = 3;
     bool _jumpReady = true;
+    float _jumpTimer= 0;
+    float _groundGravity;
+    [SerializeField] int _playerLife = 3;
     [SerializeField] GameObject _muzzle;
     public int PlayerLife { get { return _playerLife; } }
     //”­ŽË‚³‚ê‚é’e‚ÌƒvƒŒƒnƒu
@@ -54,6 +56,7 @@ public class Playercontroller : MonoBehaviour
         {
             _anim = GetComponent<Animator>();
         }
+        _groundGravity = _rb.gravityScale;
     }
 
     // Update is called once per frame
@@ -70,8 +73,21 @@ public class Playercontroller : MonoBehaviour
         if((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Ltrigger") > 0) && _jumpReady == true )
         {
             _rb.AddForce(Vector2.up * _jumpPower ,ForceMode2D.Impulse);
+            _groundGravity = _rb.gravityScale;
+            _rb.gravityScale = 0;
+
             _jumpReady = false;
         }
+        if((Input.GetButtonUp("Jump") && Input.GetAxisRaw("Ltrigger") == 0) || _jumpTimer > 0.3 || _jumpReady == true)
+        {
+            _rb.gravityScale = _groundGravity;
+            _jumpTimer = 0;
+        }
+        if(_jumpReady == false)
+        {
+            _jumpTimer += Time.deltaTime;
+        }
+
         if(Input.GetButton("Fire1") || Input.GetAxisRaw("Rtrigger") > 0 && _rh+_rv != 0)
         {
             if(_sls.GameClear ==false)
