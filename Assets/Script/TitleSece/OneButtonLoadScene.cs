@@ -12,6 +12,7 @@ public class OneButtonLoadScene : MonoBehaviour
         notcontrol();
         if (Input.GetButtonDown("Submit"))
         {
+            GetComponent<AudioSource>().Play();
             SceneManager.LoadScene("TitleScene");
         }
     }

@@ -12,8 +12,4 @@ public class ButtonLoadScene : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("hit");
-    }
 }

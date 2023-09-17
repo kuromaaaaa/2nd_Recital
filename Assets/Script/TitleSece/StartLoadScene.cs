@@ -7,7 +7,7 @@ using DG.Tweening;
 public class LoadSceneScropt : MonoBehaviour
 {
     GameObject _runner;
-    Tweener _run;
+    bool _move = false;
     [SerializeField] string _LoadSceneString;
     // Start is called before the first frame update
     void Start()
@@ -18,17 +18,19 @@ public class LoadSceneScropt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(_move)
+        {
+            _runner.transform.position = new Vector2(_runner.transform.position.x + Time.deltaTime,_runner.transform.position.y);
+        }
     }
 
     public void LoadScene(string name)
     {
-        Tweener _run = _runner.transform.DOMove(new Vector2(_runner.transform.position.x + 13, _runner.transform.position.y),1.5f).SetEase(Ease.Linear);
+        _move = true;
         StartCoroutine(nextScene(name));
     }
     IEnumerator nextScene(string N)
     {
-        _run.Kill();
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(N);
     }

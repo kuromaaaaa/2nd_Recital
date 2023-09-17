@@ -15,8 +15,10 @@ public class systemLoadScene : MonoBehaviour
     //ƒQ[ƒ€ƒNƒŠƒAbool
     bool _gameClear = false;
     public bool GameClear { get { return _gameClear; } }
-    Tweener _run;
+    bool _move = false;
     GameObject _player;
+    [SerializeField] GameObject _runPrefub;
+    GameObject _clearRunner;
 
     float _controlTimer = 0;
     // Start is called before the first frame update
@@ -40,14 +42,29 @@ public class systemLoadScene : MonoBehaviour
         if(_timer > _goalTimer && _tagCount.Length == 0)
         {
             _gameClear = true;
-            _run = _player.transform.DOMove(new Vector2(_player.transform.position.x + 13, _player.transform.position.y), 1.5f).SetEase(Ease.Linear);
-            StartCoroutine(nextScene());
+        }
+        if (_player)
+        {
+            if (_gameClear == true && _player.GetComponent<Playercontroller>().JumpReady == true && _move == false)
+            {
+                _gameClear = false;
+                _move = true;
+                _clearRunner = Instantiate(_runPrefub);
+                _clearRunner.transform.position = _player.transform.position;
+                Destroy(_player);
+                Destroy(GameObject.Find("MousePosition"));
+                StartCoroutine(nextScene());
+            }
+        }
+        if(_move)
+        {
+            _clearRunner.transform.position = new Vector2(_clearRunner.transform.position.x + Time.deltaTime*10, _clearRunner.transform.position.y);
+
         }
     }
     IEnumerator nextScene()
     {
         yield return new WaitForSeconds(2);
-        _run.Kill();
         SceneManager.LoadScene("gameClearScene");
     }
 

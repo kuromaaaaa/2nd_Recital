@@ -12,9 +12,12 @@ public class Playercontroller : MonoBehaviour
     Animator _anim;
     systemLoadScene _sls;
     ParticleSystem _ps;
+    AudioSource _asJump;
+    AudioSource _asCharge;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpPower = 10;
     bool _jumpReady = true;
+    public bool JumpReady { get { return _jumpReady; } }
     float _jumpTimer= 0;
     float _groundGravity;
     [SerializeField] int _playerLife = 3;
@@ -27,6 +30,7 @@ public class Playercontroller : MonoBehaviour
     [SerializeField] GameObject _bulletPrefubS2;
     [SerializeField] GameObject _bulletPrefubS3;
     float _BSPower;
+    bool _charge = false;
     [SerializeField] int _gunType = 1;
     public int GunType { get { return _gunType; } }
 
@@ -52,6 +56,9 @@ public class Playercontroller : MonoBehaviour
         _sls = GameObject.Find("--system--").GetComponent<systemLoadScene>();
         _ps = GetComponent<ParticleSystem>();
         _ps.Stop();
+        _asJump = GetComponent<AudioSource>();
+        _asCharge = GameObject.Find("rotation").GetComponent<AudioSource>();
+
         if (GetComponent<Animator>())
         {
             _anim = GetComponent<Animator>();
@@ -71,6 +78,7 @@ public class Playercontroller : MonoBehaviour
 
         if((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Ltrigger") > 0) && _jumpReady == true )
         {
+            _asJump.Play();
             _rb.AddForce(Vector2.up * _jumpPower ,ForceMode2D.Impulse);
             _groundGravity = _rb.gravityScale;
             _rb.gravityScale = 0;
@@ -94,7 +102,7 @@ public class Playercontroller : MonoBehaviour
             FireUp();
         }
         //チャージショット発射
-        if(_gunType == 3 && Input.GetButtonUp("Fire1"))
+        if(_gunType == 3 && !Input.GetButton("Fire1") && Input.GetAxisRaw("Rtrigger") == 0 && _charge == true)
         {
             if (_BSPower < 10)
             {
@@ -119,8 +127,10 @@ public class Playercontroller : MonoBehaviour
                 shot.transform.position = _muzzle.transform.position;
                 shot.GetComponent<BulletSPrefub>().BulletDamage((int)_BSPower);
             }
+            _asCharge.Stop();
             _ps.Stop();
             _BSPower = 0;
+            _charge = false;
         }
         //Rスティックの入力
         _rh = Input.GetAxisRaw("RstickHori");
@@ -192,9 +202,11 @@ public class Playercontroller : MonoBehaviour
             }
             case 3:
             {
+                    _charge = true;
                 if(_BSPower == 0)
                     {
                         _ps.Play();
+                        _asCharge.Play();
                     }
                 if(_rateTimer >= _rateS)
                     {
