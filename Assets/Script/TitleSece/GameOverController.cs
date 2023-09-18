@@ -34,11 +34,11 @@ public class GameOverController : MonoBehaviour
         }
         if (_first)
         {
-            _rt.localPosition = new Vector2(-400, transform.localPosition.y);
+            _rt.localPosition = new Vector2(-220, transform.localPosition.y);
         }
         else
         {
-            _rt.localPosition = new Vector2(400, transform.localPosition.y);
+            _rt.localPosition = new Vector2(220, transform.localPosition.y);
         }
 
         if (_first == true && Input.GetButtonDown("Submit"))

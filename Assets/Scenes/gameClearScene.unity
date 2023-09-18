@@ -720,7 +720,7 @@ RectTransform:
   m_GameObject: {fileID: 323000917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 59.28543}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1075277394}
@@ -732,7 +732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 350, y: -310}
+  m_AnchoredPosition: {x: 230, y: -151}
   m_SizeDelta: {x: 100, y: 114.2703}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!111 &323000919
@@ -1840,8 +1840,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000025272, y: 0.000024796}
-  m_SizeDelta: {x: 1164.1809, y: 358.015}
+  m_AnchoredPosition: {x: 0, y: 56}
+  m_SizeDelta: {x: 688.1338, y: 358.015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1219436236
 MonoBehaviour:
@@ -1865,12 +1865,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 80d76227e19e4bc4db806233b391bd7c, type: 3}
-    m_FontSize: 229
+    m_FontSize: 114
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 234
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2726,7 +2726,7 @@ RectTransform:
   m_GameObject: {fileID: 2090757706}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.87, y: 20.539999, z: 1}
+  m_LocalScale: {x: 2.435, y: 10.27, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 247078438}
@@ -2735,7 +2735,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 350, y: -310}
+  m_AnchoredPosition: {x: 230, y: -151}
   m_SizeDelta: {x: 117.5248, y: 5.6677}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &2090757708

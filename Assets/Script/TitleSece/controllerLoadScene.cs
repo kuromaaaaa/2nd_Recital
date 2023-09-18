@@ -40,11 +40,11 @@ public class controllerLoadScene : MonoBehaviour
         //ポインター位置を変更
         if(_first)
         {
-            _rt.localPosition = new Vector2(transform.localPosition.x,-250);
+            _rt.localPosition = new Vector2(transform.localPosition.x,-130);
         }
         else
         {
-            _rt.localPosition = new Vector2(transform.localPosition.x, -400);
+            _rt.localPosition = new Vector2(transform.localPosition.x, -200);
         }
         //Aボタンでロード
         if(_first && Input.GetButtonDown("Submit"))
