@@ -9,7 +9,7 @@ public class GameOverController : MonoBehaviour
     RectTransform _rt;
     AudioSource _as;
     AudioSource _parentAs;
-    float _controlTimer;
+    float _Timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,7 @@ public class GameOverController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        notcontrol();
+        _Timer = Time.deltaTime;
         if ((Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("crossX") > 0) && _first == true)
         {
             _first = false;
@@ -46,26 +46,9 @@ public class GameOverController : MonoBehaviour
             _parentAs.Play();
             SceneManager.LoadScene("GameScene");
         }
-        if (_first == false && Input.GetButtonDown("Submit"))
+        if (_first == false && Input.GetButtonDown("Submit") || _Timer > 20)
         {
             _parentAs.Play();
-            SceneManager.LoadScene("TitleScene");
-        }
-    }
-    void notcontrol()
-    {
-        if (!Input.anyKey && !Input.GetButtonDown("Jump") && Input.GetAxisRaw("Horizontal") == 0
-            && Input.GetAxisRaw("Ltrigger") == 0 && Input.GetAxisRaw("Rtrigger") == 0)
-        {//‘€ì‚ª‰½‚às‚í‚ê‚Ä‚¢‚È‚¢‚Æ‚«
-            _controlTimer += Time.deltaTime;
-        }
-        else
-        {
-            _controlTimer = 0;
-        }
-        if (_controlTimer > 60)
-        {
-            Debug.Log("ƒ[ƒh");
             SceneManager.LoadScene("TitleScene");
         }
     }

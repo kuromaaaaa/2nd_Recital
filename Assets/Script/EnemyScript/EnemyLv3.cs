@@ -15,8 +15,9 @@ public class EnemyLv3 : EnemyBase
     [SerializeField] float _moveSpeed;
     float _direction = 1;
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         _anim = this.transform.GetChild(0).GetComponent<Animator>();
         _r = Vector2.Distance(this.transform.position, new Vector2(0, 0));
         //0,0を中心にした自身の角度(ラジアン)を求める
@@ -60,13 +61,28 @@ public class EnemyLv3 : EnemyBase
     }
     void Direction()
     {
-        if(transform.position.y > 4)
+        if(transform.position.x > 0)
         {
-            _direction = -1;
+            if (transform.position.y > 4)
+            {
+                _direction = -1;
+            }
+            if (transform.position.y < -2.1)
+            {
+                _direction = 1;
+            }
         }
-        if(transform.position.y < -2.1)
+        else
         {
-            _direction = 1;
+            if (transform.position.y > 4)
+            {
+                _direction = 1;
+            }
+            if (transform.position.y < -2.1)
+            {
+                _direction = -1;
+            }
         }
+
     }
 }

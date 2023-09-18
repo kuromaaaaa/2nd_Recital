@@ -9,9 +9,21 @@ public class EnemyLv2 : EnemyBase
     float _enemyBulletTimer;
     [SerializeField] GameObject _enemyBulletPrefub;
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         _player = GameObject.Find("Player");
+        if (_player)
+        {
+            if (_player.transform.position.x > this.gameObject.transform.position.x)
+            {
+                this.gameObject.transform.localScale = new Vector2(-1, 1);
+            }
+            else
+            {
+                this.gameObject.transform.localScale = new Vector2(1, 1);
+            }
+        }
     }
 
     // Update is called once per frame

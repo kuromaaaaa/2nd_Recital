@@ -10,7 +10,14 @@ public class enemybullet : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player");
-        _direction = _player.transform.position - this.gameObject.transform.position;
+        if (_player)
+        {
+            _direction = _player.transform.position - this.gameObject.transform.position;
+        }
+        else
+        {
+            _direction = Vector2.down;
+        }
         _rb = this.GetComponent<Rigidbody2D>();
         _rb.velocity = _direction.normalized * _bulletSpeed;
     }

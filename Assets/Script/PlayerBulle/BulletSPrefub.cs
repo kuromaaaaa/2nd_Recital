@@ -46,17 +46,14 @@ public class BulletSPrefub : BulletBase
 
     public override void BulletHit(Collider2D coll)
     {
-        if (coll.gameObject.tag == ("Wall"))
-        {
-            Destroy(this.gameObject);
-        }
         if (coll.gameObject.tag == ("Enemy"))
         {
             coll.GetComponent<EnemyBase>().Damage(_bulletDamage);
             Instantiate(_hitEffect).gameObject.transform.position = this.transform.GetChild(0).transform.position;
-            Destroy(this.gameObject);
+            if (_bulletDamage < 10)
+                Destroy(this.gameObject);
         }
-        if(coll.gameObject.tag == ("EnemyBullet") && _bulletDamage > 10)
+        if(coll.gameObject.tag == ("EnemyBullet"))
         {
             Destroy(coll.gameObject);
         }

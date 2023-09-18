@@ -104,14 +104,14 @@ public class Playercontroller : MonoBehaviour
         //チャージショット発射
         if(_gunType == 3 && !Input.GetButton("Fire1") && Input.GetAxisRaw("Rtrigger") == 0 && _charge == true)
         {
-            if (_BSPower < 10)
+            if (_BSPower < 20)
             {
                 GameObject shot = Instantiate(_bulletPrefubS1) as GameObject;
                 shot.transform.position = _muzzle.transform.position;
                 shot.GetComponent<BulletSPrefub>().BulletDamage((int)_BSPower);
 
             }
-            else if (_BSPower < 20)
+            else if (_BSPower < 50)
             {
                 GameObject shot = Instantiate(_bulletPrefubS2) as GameObject;
                 shot.transform.position = _muzzle.transform.position;
@@ -211,7 +211,7 @@ public class Playercontroller : MonoBehaviour
                 if(_rateTimer >= _rateS)
                     {
                         //チャージショット溜め
-                        _BSPower += Time.deltaTime*20;
+                        _BSPower += Time.deltaTime*50;
                     }
                 break;
             }
@@ -224,6 +224,10 @@ public class Playercontroller : MonoBehaviour
             Debug.Log("敵に当たった時の処理を描く(collosion)");
             _playerLife -= 1;
             _muteki = true;
+            if (_damagePrefub)
+            {
+                Instantiate(_damagePrefub).transform.position = this.transform.position;
+            }
         }
         if(collision.gameObject.tag == ("Wall"))
         {

@@ -19,6 +19,7 @@ public class Enemy2Barrier : MonoBehaviour
     {
         if(collision.gameObject.tag == ("PlayerBullet"))
         {
+            GetComponent<AudioSource>().Play();
             Destroy(collision.gameObject);
         }
     }

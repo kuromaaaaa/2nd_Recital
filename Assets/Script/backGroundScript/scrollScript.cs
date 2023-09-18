@@ -18,7 +18,7 @@ public class scrollScript : MonoBehaviour
     {
         if(this.transform.position.x <= _scaleX)
         {
-            this.transform.position = new Vector3(_goScaleX,this.transform.position.y);
+            this.transform.position = new Vector3(_goScaleX,this.transform.position.y,this.transform.position.z);
         }
     }
     public void FixedUpdate()

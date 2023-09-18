@@ -35,11 +35,13 @@ public class systemLoadScene : MonoBehaviour
         notcontrol();
         if(_pc.PlayerLife ==0)
         {
-            SceneManager.LoadScene("GameOverScene");
+            Destroy(_player);
+            Destroy(GameObject.Find("MousePosition"));
+            StartCoroutine(GameOverScene());
         }
     _tagCount = GameObject.FindGameObjectsWithTag("Enemy");
     _timer += Time.deltaTime;
-        if(_timer > _goalTimer && _tagCount.Length == 0)
+        if(_timer > _goalTimer && _tagCount.Length == 0 && FindObjectOfType<EnemyGenerator>().EnemyList.Count == 0)
         {
             _gameClear = true;
         }
@@ -66,6 +68,11 @@ public class systemLoadScene : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("gameClearScene");
+    }
+    IEnumerator GameOverScene()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("GameOverScene");
     }
 
     void notcontrol()

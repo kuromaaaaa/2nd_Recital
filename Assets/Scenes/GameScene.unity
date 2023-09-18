@@ -491,7 +491,7 @@ MonoBehaviour:
   _bulletPrefubS3: {fileID: 3732727405080372943, guid: b7ee969043bcf964bbdd4b70c0fabfc8, type: 3}
   _gunType: 1
   _rateL: 0.2
-  _rateG: 0.1
+  _rateG: 0.07
   _rateS: 0
   _damagePrefub: {fileID: 8717073548001229742, guid: aeed97a200f0f1f48b858b630d464bec, type: 3}
   _mutekiTime: 2
@@ -7089,7 +7089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3f25e126b3d654fab1aaae59f4c1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goalTimer: 10
+  _goalTimer: 60
   _runPrefub: {fileID: 2813276544122997644, guid: 7f3c7231f60f6ec468f36282d04dcd81, type: 3}
 --- !u!114 &1118725071
 MonoBehaviour:
@@ -7374,8 +7374,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyList:
   - Timer: 5
+    Enemy: {fileID: 8815336447031098511, guid: 210ea9f47da1360459bd2a5cfe705760, type: 3}
+    Seisei: {x: 7, y: 0}
+  - Timer: 7.5
+    Enemy: {fileID: 7385016477295013842, guid: cbcc050b53bc269489a5a0022a86eef1, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 9
+    Enemy: {fileID: 7385016477295013842, guid: cbcc050b53bc269489a5a0022a86eef1, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 10
+    Enemy: {fileID: 3206933337189317200, guid: 3962682669c27dd48b3dd843f0fee038, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 12
+    Enemy: {fileID: 5259425559606690943, guid: 492ac77096aea9741879ff4c74fdb7af, type: 3}
+    Seisei: {x: 7, y: -0.5}
+  - Timer: 18
+    Enemy: {fileID: 5259425559606690943, guid: 492ac77096aea9741879ff4c74fdb7af, type: 3}
+    Seisei: {x: -7, y: -0.5}
+  - Timer: 22
+    Enemy: {fileID: 5909691271226098169, guid: 370ee9709d7b184408885cff82ace7b4, type: 3}
+    Seisei: {x: 0, y: 1}
+  - Timer: 28
+    Enemy: {fileID: 5909691271226098169, guid: 370ee9709d7b184408885cff82ace7b4, type: 3}
+    Seisei: {x: -14, y: 1}
+  - Timer: 35
     Enemy: {fileID: 4789055606577159446, guid: 9c2e77cb588f8eb488af337727cb0e83, type: 3}
-    Seisei: {x: 5, y: 3}
+    Seisei: {x: -7, y: 2}
+  - Timer: 40
+    Enemy: {fileID: 5502104997754015935, guid: 1c325a14c43af4d499e8a9c7afc5e119, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 42
+    Enemy: {fileID: 7091492239647861394, guid: 0f425b1ac3e10664cb2c7e7dcbda5589, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 45
+    Enemy: {fileID: 8980673531514809450, guid: d75a879b8f92a9d41907fd1ff47131da, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 47
+    Enemy: {fileID: 8138585548754567130, guid: 046664a50b11beb42b94da0b4c4a3368, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 52
+    Enemy: {fileID: 3258233912457230770, guid: 576d30162146806439c492049f4613d8, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 57
+    Enemy: {fileID: 8980673531514809450, guid: d75a879b8f92a9d41907fd1ff47131da, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 57.5
+    Enemy: {fileID: 8138585548754567130, guid: 046664a50b11beb42b94da0b4c4a3368, type: 3}
+    Seisei: {x: 0, y: 0}
+  - Timer: 58
+    Enemy: {fileID: 3258233912457230770, guid: 576d30162146806439c492049f4613d8, type: 3}
+    Seisei: {x: 0, y: 0}
 --- !u!1 &1219150786
 GameObject:
   m_ObjectHideFlags: 0
@@ -8656,7 +8704,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735538218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.72, y: 9.33, z: 0}
+  m_LocalPosition: {x: 5.58, y: 7.81, z: 0}
   m_LocalScale: {x: 0.3111, y: 0.3586, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

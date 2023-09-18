@@ -7,6 +7,7 @@ using UnityEngine;
 public class EnemyGenerator : MonoBehaviour
 {
     [SerializeField] List<Generator> _enemyList = new List<Generator>();
+    public List<Generator> EnemyList { get { return _enemyList; } }
     float _nowTimer;
     // Start is called before the first frame update
     void Start()
