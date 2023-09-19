@@ -557,7 +557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b0d8483845d2247a2370239b540b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 4
+  _moveSpeedNormal: 6
+  _moveSpeedDown: 3
   _jumpPower: 8.5
   _playerLife: 3
   _muzzle: {fileID: 885513532}
@@ -7118,7 +7119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885513532}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.031000003, y: 0.040000003, z: 0}
+  m_LocalPosition: {x: 0.3, y: 0.040000003, z: 0}
   m_LocalScale: {x: 0.03333333, y: 0.03333333, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7658,6 +7659,7 @@ MonoBehaviour:
   - Timer: 58
     Enemy: {fileID: 3258233912457230770, guid: 576d30162146806439c492049f4613d8, type: 3}
     Seisei: {x: 0, y: 0}
+  _generat: 1
 --- !u!1 &1219150786
 GameObject:
   m_ObjectHideFlags: 0
@@ -9294,7 +9296,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1838662352}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 096604d305fbf18469b75c7cc27605aa, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -9320,7 +9322,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1838662352}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 096604d305fbf18469b75c7cc27605aa, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

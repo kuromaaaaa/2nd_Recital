@@ -45,7 +45,13 @@ public class BulletLPrefub: BulletBase
     {
         if (coll.gameObject.tag == ("Wall"))
         {
+            Debug.Log("HitGround");
             _direction *= new Vector2(1, -1);
+        }
+        if (coll.gameObject.tag == ("MainCamera"))
+        {
+            Debug.Log("hitWall");
+            _direction *= new Vector2(-1, 1);
         }
         if (coll.gameObject.tag == ("Enemy"))
         {

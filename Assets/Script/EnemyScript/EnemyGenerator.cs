@@ -8,6 +8,7 @@ public class EnemyGenerator : MonoBehaviour
 {
     [SerializeField] List<Generator> _enemyList = new List<Generator>();
     public List<Generator> EnemyList { get { return _enemyList; } }
+    [SerializeField] bool _generat = true;
     float _nowTimer;
     // Start is called before the first frame update
     void Start()
@@ -19,12 +20,15 @@ public class EnemyGenerator : MonoBehaviour
     void Update()
     {
         _nowTimer += Time.deltaTime;
-        for(int i = 0; i < _enemyList.Count ; i++)
+        if (_generat)
         {
-            if (_enemyList[i].Timer < _nowTimer)
+            for (int i = 0; i < _enemyList.Count; i++)
             {
-                Instantiate(_enemyList[i].Enemy).transform.position = _enemyList[i].Seisei;
-                _enemyList.RemoveAt(i);
+                if (_enemyList[i].Timer < _nowTimer)
+                {
+                    Instantiate(_enemyList[i].Enemy).transform.position = _enemyList[i].Seisei;
+                    _enemyList.RemoveAt(i);
+                }
             }
         }
     }

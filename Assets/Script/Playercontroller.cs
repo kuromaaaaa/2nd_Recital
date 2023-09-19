@@ -11,7 +11,8 @@ public class Playercontroller : MonoBehaviour
     ParticleSystem _ps;
     AudioSource _asJump;
     AudioSource _asCharge;
-    [SerializeField] float _moveSpeed;
+    [SerializeField] float _moveSpeedNormal = 4;
+    [SerializeField] float _moveSpeedDown = 2;
     [SerializeField] float _jumpPower = 10;
     bool _jumpReady = true;
     public bool JumpReady { get { return _jumpReady; } }
@@ -70,8 +71,18 @@ public class Playercontroller : MonoBehaviour
         {
             Muteki();//無敵時間
         }
+        float MoveSpeed = _moveSpeedNormal;
+        //弾発射
+        if (Input.GetButton("Fire1") || Input.GetAxisRaw("Rtrigger") > 0 && _rh + _rv != 0)
+        {
+            if (_sls.GameClear == false)
+            {
+                MoveSpeed = _moveSpeedDown;
+                FireUp();
+            }
+        }
         float h = Input.GetAxisRaw("Horizontal");
-        _rb.velocity = new Vector2(h * _moveSpeed, _rb.velocity.y);
+        _rb.velocity = new Vector2(h * MoveSpeed, _rb.velocity.y);
 
         if((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Ltrigger") > 0) && _jumpReady == true )
         {
@@ -92,12 +103,6 @@ public class Playercontroller : MonoBehaviour
             _jumpTimer += Time.deltaTime;
         }
 
-        //弾発射
-        if(Input.GetButton("Fire1") || Input.GetAxisRaw("Rtrigger") > 0 && _rh+_rv != 0)
-        {
-            if(_sls.GameClear ==false)
-            FireUp();
-        }
         //チャージショット発射
         if(_gunType == 3 && !Input.GetButton("Fire1") && Input.GetAxisRaw("Rtrigger") == 0 && _charge == true)
         {
@@ -165,6 +170,12 @@ public class Playercontroller : MonoBehaviour
         if(0 < Input.GetAxisRaw("crossY"))
         {
             _gunType = 2;
+        }
+        //銃がチャージショット以外ならチャージのパーティクルと音を消す
+        if(_gunType != 3)
+        {
+            _ps.Stop();
+            _asCharge.Stop();
         }
 
         //ジャンプアニメーション用変数
@@ -235,12 +246,15 @@ public class Playercontroller : MonoBehaviour
     {
         if (collision.gameObject.tag == ("EnemyBullet") && !_muteki)
         {
-            Debug.Log("敵に当たった時の処理を描く弾");
-            _playerLife -= 1;
-            _muteki = true;
-            if(_damagePrefub)
+            if (!_sls.GameClear)
             {
-                Instantiate(_damagePrefub).transform.position = this.transform.position;
+                Debug.Log("敵に当たった時の処理を描く弾");
+                _playerLife -= 1;
+                _muteki = true;
+                if (_damagePrefub)
+                {
+                    Instantiate(_damagePrefub).transform.position = this.transform.position;
+                }
             }
         }
     }
