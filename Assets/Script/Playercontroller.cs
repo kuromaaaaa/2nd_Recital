@@ -134,6 +134,15 @@ public class Playercontroller : MonoBehaviour
             _BSPower = 0;
             _charge = false;
         }
+        //チャージ具合でパーティクルの色を変える
+        if(_BSPower < 20)
+        {
+            _ps.startColor = new Color(1f,1f,1 - _BSPower/20);
+        }
+        else if(_BSPower < 50)
+        {
+            _ps.startColor = new Color(1f,1 - (_BSPower - 20)/30,0);
+        }
         //Rスティックの入力
         _rh = Input.GetAxisRaw("RstickHori");
         _rv = Input.GetAxisRaw("RstickVert");
@@ -150,6 +159,11 @@ public class Playercontroller : MonoBehaviour
         { 
             _gunType -= 1;
         }
+        if(Input.GetMouseButtonDown(1))
+        {
+            _gunType += 1;
+        }
+
         if (_gunType == 0)
         {
             _gunType = 3;
@@ -192,6 +206,7 @@ public class Playercontroller : MonoBehaviour
         {
             case 1:
             {
+                    _BSPower = 0;
                 if(_rateTimer >= _rateL)
                 {
                     Instantiate(_bulletPrefubL).transform.position = _muzzle.transform.position;
@@ -201,6 +216,7 @@ public class Playercontroller : MonoBehaviour
             }
             case 2: 
             {
+                    _BSPower = 0;
                 if (_rateTimer >= _rateG)
                 {
                     Instantiate(_bulletPrefubG).transform.position = _muzzle.transform.position;

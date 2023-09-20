@@ -7653,10 +7653,10 @@ MonoBehaviour:
   - Timer: 57
     Enemy: {fileID: 8980673531514809450, guid: d75a879b8f92a9d41907fd1ff47131da, type: 3}
     Seisei: {x: 0, y: 0}
-  - Timer: 57.5
+  - Timer: 57.25
     Enemy: {fileID: 8138585548754567130, guid: 046664a50b11beb42b94da0b4c4a3368, type: 3}
     Seisei: {x: 0, y: 0}
-  - Timer: 58
+  - Timer: 57.5
     Enemy: {fileID: 3258233912457230770, guid: 576d30162146806439c492049f4613d8, type: 3}
     Seisei: {x: 0, y: 0}
   _generat: 1
